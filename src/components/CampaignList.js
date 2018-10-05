@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { getItems, deleteItem } from "../actions/itemActions";
+import { getItems, deleteItem, togglePlay } from "../actions/itemActions";
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 var FontAwesome = require('react-fontawesome');
@@ -17,7 +17,9 @@ class CampaignList extends Component {
     this.props.deleteItem(id);
   };
 
-  onTogglePlay = id =>
+  onTogglePlay = id => {
+    this.props.togglePlay(id);
+  };
 
   render() {
     const {items} = this.props.item;
@@ -25,7 +27,7 @@ class CampaignList extends Component {
       <Container>
         <ListGroup>
           <TransitionGroup className="campaign-list">
-            {items.map(({id, name, created_time}, index) => (
+            {items.map(({id, name, created_time, play}, index) => (
               <CSSTransition
                 key={id}
                 timeout={500}
@@ -39,13 +41,16 @@ class CampaignList extends Component {
                     </Moment></span>
                   </strong>
 
+                  <FontAwesome name='rocket' />
                   <Button
                     className="primary-btn"
                     color="primary"
                     size="sm"
                     onClick={this.onTogglePlay.bind(this, id)}
                   >
-                    Pause
+                    {play}
+
+                    {play ? 'Pause' : 'Play' }
                   </Button>
                   <Button
                     className="remove-btn"
@@ -63,16 +68,14 @@ class CampaignList extends Component {
   }
 }
 
-const format = t => `${pad(t.getUTCHours())}:${pad(t.getUTCMinutes())}:${pad(t.getUTCSeconds())}`;
-const pad = n => n < 10 ? `0${n}` : n;
-
-CampaignList.propTypes = {
+/*CampaignList.propTypes = {
   getItems: PropTypes.func.isRequired,
-  item: PropTypes.object.isRequired
-};
+  item: PropTypes.object.isRequired,
+  play: PropTypes.bool.isRequired
+};*/
 
 const mapStateToProps = (state) => ({
   item: state.item
 });
 
-export default connect(mapStateToProps, { getItems, deleteItem })(CampaignList);
+export default connect(mapStateToProps, { getItems, deleteItem, togglePlay })(CampaignList);

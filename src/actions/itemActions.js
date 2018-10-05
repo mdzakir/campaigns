@@ -22,7 +22,7 @@ export const addItem = (item) => {
 
 export const togglePlay = (id) => {
   return {
-    type: ADD_ITEM,
+    type: TOGGLE_PLAY,
     payload: id
   };
 };

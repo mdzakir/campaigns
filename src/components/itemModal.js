@@ -63,25 +63,25 @@ class ItemModal extends Component{
           toggle={this.toggle}>
             <ModalHeader
             toggle={this.toggle}>
-              Add to List
+              Create a new campaign
             </ModalHeader>
             <ModalBody>
               <Form onSubmit={this.onSubmit}>
                 <FormGroup>
                   <Label
-                  for="item">Item
+                  for="item">Campaign name
                   </Label>
                   <Input
                     name="name"
                     type="text"
                     id="item"
-                    placeholder="Enter an item"
+                    placeholder="Enter an campaign name"
                     onChange={this.onChange}
                   />
                   <Button
                   color="dark"
                   style={{marginTop: '2rem'}}
-                  block>
+                  >
                   Save
                   </Button>
                 </FormGroup>

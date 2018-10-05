@@ -79,14 +79,16 @@ export default function(state = initialState, action) {
         items: [action.payload, ...state.items]
       };
     case TOGGLE_PLAY:
-      if (state.id !== action.id) {
-        return state
-      }
+        return {
+          ...state,
+          items: state.items.map(item => {
+            if(item.id === action.payload) {
+              item.play = !item.play
+            }
+            return item;
+          })
+        };
 
-      return {
-        ...state,
-        completed: !state.completed
-      };
     default:
       return state
   }
