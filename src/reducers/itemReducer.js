@@ -78,6 +78,17 @@ export default function(state = initialState, action) {
         ...state,
         items: [action.payload, ...state.items]
       };
+    case EDIT_ITEM:
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if(item.id === action.payload.id) {
+            return action.payload
+          } else {
+            return item;
+          }
+        })
+      };
     case TOGGLE_PLAY:
         return {
           ...state,

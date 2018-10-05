@@ -20,6 +20,13 @@ export const addItem = (item) => {
   };
 };
 
+export const editItem = (item) => {
+  return {
+    type: EDIT_ITEM,
+    payload: item
+  };
+};
+
 export const togglePlay = (id) => {
   return {
     type: TOGGLE_PLAY,

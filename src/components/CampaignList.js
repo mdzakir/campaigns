@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { getItems, deleteItem, togglePlay } from "../actions/itemActions";
+import { getItems, deleteItem, editItem, togglePlay } from "../actions/itemActions";
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 var FontAwesome = require('react-fontawesome');
@@ -21,13 +21,17 @@ class CampaignList extends Component {
     this.props.togglePlay(id);
   };
 
+  onEditClick = (item) => {
+    this.props.editItem(item);
+  };
+
   render() {
     const {items} = this.props.item;
     return (
       <Container>
         <ListGroup>
           <TransitionGroup className="campaign-list">
-            {items.map(({id, name, created_time, play}, index) => (
+            {items.map(({id, name, created_time, play, ...item}, index) => (
               <CSSTransition
                 key={id}
                 timeout={500}
@@ -52,6 +56,12 @@ class CampaignList extends Component {
 
                     {play ? 'Pause' : 'Play' }
                   </Button>
+                  <Button
+                    className="default-btn"
+                    color="default"
+                    size="sm"
+                    onClick={this.onEditClick.bind(this, item)}
+                  >Edit</Button>
                   <Button
                     className="remove-btn"
                     color="danger"
@@ -78,4 +88,4 @@ const mapStateToProps = (state) => ({
   item: state.item
 });
 
-export default connect(mapStateToProps, { getItems, deleteItem, togglePlay })(CampaignList);
+export default connect(mapStateToProps, { getItems, deleteItem, editItem, togglePlay })(CampaignList);
