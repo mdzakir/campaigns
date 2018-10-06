@@ -32,7 +32,9 @@ class ItemModal extends Component{
         {
           activityTime: new Date(),
           activityBy: 'Zakir',
-          activityText: 'Created!'
+          activityTitle: 'Campaign Created!',
+          activityType: 'create',
+          activityBody: ''
         }
       ]
     };

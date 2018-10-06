@@ -10,7 +10,9 @@ const initialState = {
         {
           activityTime: new Date('2018', '10', '01'),
           activityBy: 'Zakir',
-          activityText: 'Created!'
+          activityTitle: 'Campaign Created!',
+          activityType: 'create',
+          activityBody: ''
         }
       ]},
     {id: uuid(), name: 'Push Notifications', created_time: new Date(),
@@ -20,7 +22,9 @@ const initialState = {
         {
           activityTime: new Date('2018', '10', '01'),
           activityBy: 'Zakir',
-          activityText: 'Created!'
+          activityTitle: 'Campaign Created!',
+          activityType: 'create',
+          activityBody: ''
         }
       ]}
   ]
@@ -55,7 +59,9 @@ export default function(state = initialState, action) {
               {
                 activityTime: new Date(),
                 activityBy: 'Zakir',
-                activityText: 'Edit Item!'
+                activityTitle: 'Campaign Renamed!',
+                activityType: 'rename',
+                activityBody: action.payload.name
               },
               ...editedItem.history
             ]
@@ -75,7 +81,9 @@ export default function(state = initialState, action) {
               {
                 activityTime: new Date(),
                 activityBy: 'Zakir',
-                activityText: 'Comment Added!'
+                activityTitle: 'Comment Added!',
+                activityType: 'comment',
+                activityBody: action.payload.comment
               },
               ...commentedItem.history
             ],

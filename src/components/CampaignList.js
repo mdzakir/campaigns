@@ -8,7 +8,7 @@ import Moment from 'react-moment';
 import ItemModal from "./itemModal";
 import EditModal from "./editModal";
 import CommentModal from "./CommentModal";
-var FontAwesome = require('react-fontawesome');
+import ShowHistory from './ShowHistory';
 
 class CampaignList extends Component {
 
@@ -22,10 +22,6 @@ class CampaignList extends Component {
 
   onTogglePlay = id => {
     this.props.togglePlay(id);
-  };
-
-  onEditClick = (item) => {
-    this.props.editItem(item);
   };
 
   onClose = () => {
@@ -57,7 +53,7 @@ class CampaignList extends Component {
                     </Moment></span>
                   </strong>
 
-                  <FontAwesome name='rocket' />
+                  <ShowHistory index={index} item={item} />
                   <Button
                     className="primary-btn"
                     color="primary"
