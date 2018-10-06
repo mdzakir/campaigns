@@ -47,6 +47,7 @@ export default function(state = initialState, action) {
         items: [action.payload, ...state.items]
       };
     case EDIT_ITEM:
+      debugger;
       let editedItem = state.items[action.payload.index];
       return {
         ...state,
@@ -100,14 +101,36 @@ export default function(state = initialState, action) {
         ]
       };
     case TOGGLE_PLAY:
+      debugger;
+      let toggledItem = state.items[action.payload.index];
         return {
           ...state,
-          items: state.items.map(item => {
+          items: [
+            ...state.items.slice(0, action.payload.index),
+            {
+              ...toggledItem,
+              history: [
+                {
+                  activityTime: new Date(),
+                  activityBy: 'Zakir',
+                  activityTitle: action.payload.play ? 'Campaign Resumed' : 'Campaign Paused',
+                  activityType: action.payload.play ? 'play' : 'pause',
+                  activityBody: ''
+                },
+                ...toggledItem.history
+              ],
+              play: !action.payload.play,
+              ...toggledItem.play
+            },
+            ...state.items.slice(action.payload.index + 1)
+          ]
+
+          /*items: state.items.map(item => {
             if(item.id === action.payload) {
               item.play = !item.play
             }
             return item;
-          })
+          })*/
         };
 
     default:

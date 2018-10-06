@@ -2,26 +2,98 @@
 
 }
 
+.bg-light {
+  background-color: #f8fcff !important;
+}
+
+.tac{
+  text-align: center;
+}
+
+.modal-content{
+  background: #f8fcff;
+}
+
+.control-button{
+  cursor: pointer;
+  color: #6d767d;
+  font-size: 12px;
+  min-width: 55px;
+}
+
+.delete-btn svg{
+  color: #c93233;
+}
+
+.play-pause svg{
+  color: #eebd3a;
+}
+
+.edit-btn svg, .comment-btn svg{
+  color: #2b9cdf;
+}
+
 .campaign-num{
   padding: 4px 12px;
   border-radius: 50%;
   background: #eeeeee;
   margin-right: 10px;
+  font-size: 14px;
+  color: #36a1dd;
+  text-shadow: 0 0;
+}
+
+.control-button-name{
+  display: none;
+}
+
+.campaign-list .list-group-item:hover .campaign-name{
+  color: #2e2f33;
+}
+
+.campaign-list .list-group-item:hover .campaign-num{
+  background-color: #36a1dd;
+  color: #eee;
+}
+
+.campaign-list .list-group-item:hover .control-button-name{
+  display: block;
 }
 
 .campaign-name{
   flex: 1;
-  color: #777;
+  color: #8998a2;
 }
 
 .campaign-created-time{
   font-size: 80%;
   font-weight: normal;
-  color:#999;
+  color:#aaa;
 }
 
 .remove-btn{
   margin-right: .5rem;
+}
+
+.icon-type{
+  border-radius: 50%;
+  padding: 3px 7px 4px 7px;
+  background: #999999;
+  color: #fff;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.icon-type.pause{
+  background: #eebd3a;
+}
+
+.icon-type.comment, .icon-type.rename, .icon-type.play{
+  background: #2b9cdf;
+}
+
+.history-list .history-list-item{
+  margin-bottom: 30px;
 }
 
 .fade-enter{

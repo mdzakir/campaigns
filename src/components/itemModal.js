@@ -3,6 +3,7 @@ import { Container, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, L
 import {connect} from 'react-redux';
 import {addItem} from '../actions/itemActions';
 import uuid from 'uuid';
+import { FaPlus, FaBars } from 'react-icons/fa';
 
 class ItemModal extends Component{
   state = {
@@ -45,14 +46,14 @@ class ItemModal extends Component{
   render() {
     return(
       <div>
-        <Container style={{display:'flex', alignItems: 'baseline'}}>
-          <h5>Campaign List</h5>
+        <div style={{display:'flex', alignItems: 'baseline'}}>
+          <h5><FaBars /> Campaign List</h5>
           <Button
           color="primary"
           size="sm"
           style={{marginBottom: '2rem', marginLeft: '2rem'}}
           onClick={this.toggle}>
-            + Create new
+            <FaPlus /> Create new
           </Button>
           <Modal
           isOpen={this.state.modal}
@@ -84,7 +85,7 @@ class ItemModal extends Component{
               </Form>
             </ModalBody>
           </Modal>
-        </Container>
+        </div>
       </div>
     );
   }

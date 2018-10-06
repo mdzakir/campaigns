@@ -7,6 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink } from 'reactstrap';
+import { FaEnvelope, FaBars } from 'react-icons/fa';
 
 class AppNavbar extends Component{
   state = {
@@ -24,7 +25,7 @@ class AppNavbar extends Component{
       <div>
         <Navbar color="light" light expand="xs" className="md-5" style={{marginBottom: '2rem'}}>
           <NavbarBrand href="/" >
-            All Campaigns</NavbarBrand>
+            <FaEnvelope style={{color: '#289ee5'}}/> All Campaigns</NavbarBrand>
             <NavbarToggler onClick={this.toggle}/>
             <Collapse isOpen={this.state.isOpen} navbar >
               <Nav className="ml-auto" navbar>

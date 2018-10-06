@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {addComment} from '../actions/itemActions';
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import Moment from "react-moment";
+import { FaComment } from 'react-icons/fa';
 
 class CommentModal extends Component{
   state = {
@@ -33,13 +34,14 @@ class CommentModal extends Component{
     const { comments } = this.props.item;
     return(
       <div>
-        <Container style={{display:'flex', alignItems: 'baseline'}}>
-          <Button
-            className="default-btn"
+        <div style={{display:'flex', alignItems: 'baseline'}}>
+          <span
+            className="tac control-button comment-btn"
             color="success"
             size="sm"
             onClick={this.toggle}
-          >Comment</Button>
+          ><FaComment/> <br /> <span className="control-button-name">Comment</span>
+          </span>
           <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}>
@@ -89,7 +91,7 @@ class CommentModal extends Component{
 
             </ModalBody>
           </Modal>
-        </Container>
+        </div>
       </div>
     );
   }

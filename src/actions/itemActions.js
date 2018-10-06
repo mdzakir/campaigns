@@ -34,9 +34,9 @@ export const addComment = (comment, index) => {
   };
 };
 
-export const togglePlay = (id) => {
+export const togglePlay = (play, index) => {
   return {
     type: TOGGLE_PLAY,
-    payload: id
+    payload: {play, index}
   };
 };

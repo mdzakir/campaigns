@@ -9,6 +9,7 @@ import ItemModal from "./itemModal";
 import EditModal from "./editModal";
 import CommentModal from "./CommentModal";
 import ShowHistory from './ShowHistory';
+import { FaPauseCircle, FaPlayCircle, FaTrash } from 'react-icons/fa';
 
 class CampaignList extends Component {
 
@@ -20,8 +21,8 @@ class CampaignList extends Component {
     this.props.deleteItem(id);
   };
 
-  onTogglePlay = id => {
-    this.props.togglePlay(id);
+  onTogglePlay = (play, index) => {
+    this.props.togglePlay(play, index);
   };
 
   onClose = () => {
@@ -54,24 +55,24 @@ class CampaignList extends Component {
                   </strong>
 
                   <ShowHistory index={index} item={item} />
-                  <Button
-                    className="primary-btn"
+                  <span
+                    className="tac control-button play-pause"
                     color="primary"
                     size="sm"
-                    onClick={this.onTogglePlay.bind(this, id)}
+                    onClick={this.onTogglePlay.bind(this, play, index)}
                   >
-                    {play}
-
-                    {play ? 'Pause' : 'Play' }
-                  </Button>
+                    {play ? <FaPauseCircle /> : <FaPlayCircle/> }
+                    <br />
+                    <span className="control-button-name">{play ? 'Pause': 'Play' }</span>
+                  </span>
                   <CommentModal index={index} item={item} />
                   <EditModal index={index} item={item} />
-                  <Button
-                    className="remove-btn"
+                  <span
+                    className="tac control-button delete-btn"
                     color="danger"
                     size="sm"
                     onClick={this.onDeleteClick.bind(this, id)}
-                  >&times;</Button>
+                  ><FaTrash /> <br/> <span className="control-button-name">Delete</span></span>
                 </ListGroupItem>
               </CSSTransition>
               )

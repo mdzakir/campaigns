@@ -3,7 +3,7 @@ import { Container, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, L
 import {connect} from 'react-redux';
 import {addComment} from '../actions/itemActions';
 import {CSSTransition, TransitionGroup} from "react-transition-group";
-import Moment from "react-moment";
+import { FaPlay, FaPause, FaHistory, FaPlus, FaComment, FaPencilAlt } from 'react-icons/fa';
 
 class ShowHistory extends Component{
   state = {
@@ -21,23 +21,23 @@ class ShowHistory extends Component{
     const { history } = this.props.item;
     return(
       <div>
-        <Container style={{display:'flex', alignItems: 'baseline'}}>
-          <Button
-            className="default-btn"
+        <div className="history-wrapper" style={{display:'flex', alignItems: 'baseline'}}>
+          <span
+            className="tac control-button"
             color="success"
             size="sm"
             onClick={this.toggle}
-          >History</Button>
+          ><FaHistory /><br /> <span className="control-button-name">History</span></span>
           <Modal
             isOpen={this.state.modal}
             toggle={this.toggle}>
             <ModalHeader
               toggle={this.toggle}>
-              History
+              <FaHistory /> History
             </ModalHeader>
             <ModalBody>
               {history.length > 0 && <ListGroup>
-                <TransitionGroup className="campaign-list">
+                <TransitionGroup className="history-list">
                   {history.map((item, index) => {
                     const { activityBy, activityType, activityTitle, activityBody } = item;
                     return (
@@ -45,14 +45,21 @@ class ShowHistory extends Component{
                         key={index}
                         timeout={500}
                         classNames="fade">
-                        <ListGroupItem style={{display: 'flex', alignItems: 'baseline'}}>
+                        <div className="history-list-item" style={{display: 'flex', alignItems: 'baseline'}}>
+                          <span className={activityType + ' icon-type'}>
+                               {activityType === 'create' ?  <FaPlus /> :
+                                 activityType === 'rename' ? <FaPencilAlt /> :
+                                   activityType === 'play' ? <FaPlay /> :
+                                     activityType === 'pause' ? <FaPause /> : <FaComment />  }
+                            </span>
                           <strong className="campaign-name">
+
                             {activityTitle}
                             <br /><span className="campaign-created-time">
                             by <strong>{activityBy}</strong></span>
                             <br /> {activityType === 'comment' ? '"' + activityBody + '"' : activityBody}
                           </strong>
-                        </ListGroupItem>
+                        </div>
                       </CSSTransition>
                     )
                   })}
@@ -61,7 +68,7 @@ class ShowHistory extends Component{
 
             </ModalBody>
           </Modal>
-        </Container>
+        </div>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Container, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 import {connect} from 'react-redux';
 import {editItem} from '../actions/itemActions';
+import { FaPencilAlt } from 'react-icons/fa';
 
 class ItemModal extends Component{
   state = {
@@ -34,13 +35,13 @@ class ItemModal extends Component{
   render() {
     return(
       <div>
-        <Container style={{display:'flex', alignItems: 'baseline'}}>
-          <Button
-            className="default-btn"
+        <div style={{display:'flex', alignItems: 'baseline'}}>
+          <span
+            className="tac control-button edit-btn"
             color="default"
             size="sm"
             onClick={this.toggle}
-          >Edit</Button>
+          ><FaPencilAlt/> <br /><span className="control-button-name">Edit</span></span>
           <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}>
@@ -72,7 +73,7 @@ class ItemModal extends Component{
               </Form>
             </ModalBody>
           </Modal>
-        </Container>
+        </div>
       </div>
     );
   }
