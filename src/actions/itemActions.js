@@ -1,4 +1,4 @@
-import { ADD_ITEM, GET_ITEMS, EDIT_ITEM, DELETE_ITEM, TOGGLE_PLAY } from "./types";
+import { ADD_ITEM, GET_ITEMS, EDIT_ITEM, DELETE_ITEM, ADD_COMMENT, TOGGLE_PLAY } from "./types";
 
 export const getItems = () => {
   return {
@@ -24,6 +24,13 @@ export const editItem = (name, index) => {
   return {
     type: EDIT_ITEM,
     payload: {name, index}
+  };
+};
+
+export const addComment = (comment, index) => {
+  return {
+    type: ADD_COMMENT,
+    payload: { comment, index }
   };
 };
 

@@ -1,62 +1,26 @@
 import uuid from "uuid";
-import { ADD_ITEM, GET_ITEMS, EDIT_ITEM, DELETE_ITEM, TOGGLE_PLAY } from "../actions/types";
+import { ADD_ITEM, GET_ITEMS, EDIT_ITEM, DELETE_ITEM, ADD_COMMENT, TOGGLE_PLAY } from "../actions/types";
 
 const initialState = {
   items: [
     {id: uuid(), name: 'Emails', created_time: new Date(),
       play: false,
+      comments: [],
       history:[
         {
           activityTime: new Date('2018', '10', '01'),
           activityBy: 'Zakir',
-          activityText: 'Good luck!'
-        },
-        {
-          activityTime: new Date('2018', '10', '01'),
-          activityBy: 'Zakir',
-          activityText: 'Renamed!'
+          activityText: 'Created!'
         }
       ]},
     {id: uuid(), name: 'Push Notifications', created_time: new Date(),
       play: false,
+      comments: [],
       history:[
         {
           activityTime: new Date('2018', '10', '01'),
           activityBy: 'Zakir',
-          activityText: 'Good luck!'
-        },
-        {
-          activityTime: new Date('2018', '10', '01'),
-          activityBy: 'Zakir',
-          activityText: 'Renamed!'
-        }
-      ]},
-    {id: uuid(), name: 'InApp Messages', created_time: new Date(),
-      play: false,
-      history:[
-        {
-          activityTime: new Date('2018', '10', '01'),
-          activityBy: 'Zakir',
-          activityText: 'Good luck!'
-        },
-        {
-          activityTime: new Date('2018', '10', '01'),
-          activityBy: 'Zakir',
-          activityText: 'Renamed!'
-        }
-      ]},
-    {id: uuid(), name: 'SMS', created_time: new Date(),
-      play: false,
-      history:[
-        {
-          activityTime: new Date('2018', '10', '01'),
-          activityBy: 'Zakir',
-          activityText: 'Good luck!'
-        },
-        {
-          activityTime: new Date('2018', '10', '01'),
-          activityBy: 'Zakir',
-          activityText: 'Renamed!'
+          activityText: 'Created!'
         }
       ]}
   ]
@@ -94,6 +58,34 @@ export default function(state = initialState, action) {
                 activityText: 'Edit Item!'
               },
               ...editedItem.history
+            ]
+          },
+          ...state.items.slice(action.payload.index + 1)
+        ]
+      };
+    case ADD_COMMENT:
+      let commentedItem = state.items[action.payload.index];
+      return {
+        ...state,
+        items: [
+          ...state.items.slice(0, action.payload.index),
+          {
+            ...commentedItem,
+            history: [
+              {
+                activityTime: new Date(),
+                activityBy: 'Zakir',
+                activityText: 'Comment Added!'
+              },
+              ...commentedItem.history
+            ],
+            comments: [
+              {
+                commentTime: new Date(),
+                commentBy: 'Zakir',
+                commentText: action.payload.comment
+              },
+              ...commentedItem.comments
             ]
           },
           ...state.items.slice(action.payload.index + 1)

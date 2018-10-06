@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import ItemModal from "./itemModal";
 import EditModal from "./editModal";
+import CommentModal from "./CommentModal";
 var FontAwesome = require('react-fontawesome');
 
 class CampaignList extends Component {
@@ -67,6 +68,7 @@ class CampaignList extends Component {
 
                     {play ? 'Pause' : 'Play' }
                   </Button>
+                  <CommentModal index={index} item={item} />
                   <EditModal index={index} item={item} />
                   <Button
                     className="remove-btn"
