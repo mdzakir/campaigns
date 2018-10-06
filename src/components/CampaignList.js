@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { getItems, deleteItem, editItem, togglePlay } from "../actions/itemActions";
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
+import ItemModal from "./itemModal";
+import EditModal from "./editModal";
 var FontAwesome = require('react-fontawesome');
 
 class CampaignList extends Component {
@@ -25,13 +27,22 @@ class CampaignList extends Component {
     this.props.editItem(item);
   };
 
+  onClose = () => {
+    this.setState({ editing: false });
+  };
+
   render() {
     const {items} = this.props.item;
     return (
       <Container>
+        <ItemModal
+          onClose={this.onClose}
+        />
         <ListGroup>
           <TransitionGroup className="campaign-list">
-            {items.map(({id, name, created_time, play, ...item}, index) => (
+            {items.map((item, index) => {
+              const { id, name, created_time, play } = item;
+              return (
               <CSSTransition
                 key={id}
                 timeout={500}
@@ -56,12 +67,7 @@ class CampaignList extends Component {
 
                     {play ? 'Pause' : 'Play' }
                   </Button>
-                  <Button
-                    className="default-btn"
-                    color="default"
-                    size="sm"
-                    onClick={this.onEditClick.bind(this, item)}
-                  >Edit</Button>
+                  <EditModal index={index} item={item} />
                   <Button
                     className="remove-btn"
                     color="danger"
@@ -70,7 +76,8 @@ class CampaignList extends Component {
                   >&times;</Button>
                 </ListGroupItem>
               </CSSTransition>
-            ))}
+              )
+            })}
           </TransitionGroup>
         </ListGroup>
       </Container>

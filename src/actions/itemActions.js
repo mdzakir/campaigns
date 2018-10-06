@@ -20,10 +20,10 @@ export const addItem = (item) => {
   };
 };
 
-export const editItem = (item) => {
+export const editItem = (name, index) => {
   return {
     type: EDIT_ITEM,
-    payload: item
+    payload: {name, index}
   };
 };
 

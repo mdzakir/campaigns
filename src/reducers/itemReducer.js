@@ -79,15 +79,25 @@ export default function(state = initialState, action) {
         items: [action.payload, ...state.items]
       };
     case EDIT_ITEM:
+      let editedItem = state.items[action.payload.index];
       return {
         ...state,
-        items: state.items.map(item => {
-          if(item.id === action.payload.id) {
-            return action.payload
-          } else {
-            return item;
-          }
-        })
+        items: [
+          ...state.items.slice(0, action.payload.index),
+          {
+            ...editedItem,
+            name: action.payload.name,
+            history: [
+              {
+                activityTime: new Date(),
+                activityBy: 'Zakir',
+                activityText: 'Edit Item!'
+              },
+              ...editedItem.history
+            ]
+          },
+          ...state.items.slice(action.payload.index + 1)
+        ]
       };
     case TOGGLE_PLAY:
         return {

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import { Container, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 import {connect} from 'react-redux';
-import {addItem} from '../actions/itemActions';
-import uuid from 'uuid';
+import {editItem} from '../actions/itemActions';
 
 class ItemModal extends Component{
   state = {
@@ -22,42 +21,32 @@ class ItemModal extends Component{
 
   onSubmit = (e) => {
     e.preventDefault();
-    const newItem = {
-      id: uuid(),
-      name: this.state.name,
-      created_time: new Date(),
-      play: false,
-      comments: [],
-      history:[
-        {
-          activityTime: new Date(),
-          activityBy: 'Zakir',
-          activityText: 'Created!'
-        }
-      ]
-    };
-    this.props.addItem(newItem);
+
+    // Add item via add item actions
+    this.props.editItem(this.state.name, this.props.index);
     this.toggle();
   };
+
+  componentDidMount() {
+    this.setState({ name: this.props.item.name })
+  }
 
   render() {
     return(
       <div>
         <Container style={{display:'flex', alignItems: 'baseline'}}>
-          <h5>Campaign List</h5>
           <Button
-          color="primary"
-          size="sm"
-          style={{marginBottom: '2rem', marginLeft: '2rem'}}
-          onClick={this.toggle}>
-            + Create new
-          </Button>
+            className="default-btn"
+            color="default"
+            size="sm"
+            onClick={this.toggle}
+          >Edit</Button>
           <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}>
             <ModalHeader
             toggle={this.toggle}>
-              Create a new campaign
+              Edit campaign
             </ModalHeader>
             <ModalBody>
               <Form onSubmit={this.onSubmit}>
@@ -70,13 +59,14 @@ class ItemModal extends Component{
                     type="text"
                     id="item"
                     placeholder="Enter an campaign name"
+                    value={this.state.name}
                     onChange={this.onChange}
                   />
                   <Button
                   color="dark"
                   style={{marginTop: '2rem'}}
                   >
-                  Save
+                  Update
                   </Button>
                 </FormGroup>
               </Form>
@@ -88,8 +78,4 @@ class ItemModal extends Component{
   }
 }
 
-const mapStateToProps = state => ({
-  item: state.item
-});
-
-export default connect(mapStateToProps, { addItem })(ItemModal);
+export default connect(null, { editItem })(ItemModal);
