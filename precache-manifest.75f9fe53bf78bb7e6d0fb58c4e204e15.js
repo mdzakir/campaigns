@@ -4,15 +4,15 @@ self.__precacheManifest = [
     "url": "/campaigns/static/js/runtime~main.852f798a.js"
   },
   {
-    "revision": "c4c8f99769ad6087746e",
-    "url": "/campaigns/static/js/main.c4c8f997.chunk.js"
+    "revision": "5fd68f8905e20af8bc54",
+    "url": "/campaigns/static/js/main.5fd68f89.chunk.js"
   },
   {
     "revision": "2b76cb7e9cc091574ca2",
     "url": "/campaigns/static/js/1.2b76cb7e.chunk.js"
   },
   {
-    "revision": "c4c8f99769ad6087746e",
+    "revision": "5fd68f8905e20af8bc54",
     "url": "/campaigns/static/css/main.1b74b794.chunk.css"
   },
   {
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/campaigns/static/css/1.9c54ae07.chunk.css"
   },
   {
-    "revision": "fbd989f6222727a53ef8dba41938398d",
+    "revision": "e5943c84424c022dc85b844c6aff1f29",
     "url": "/campaigns/index.html"
   }
 ];
