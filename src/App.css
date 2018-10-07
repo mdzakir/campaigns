@@ -92,6 +92,11 @@
   background: #2b9cdf;
 }
 
+.history-list {
+  height: 70vh;
+  overflow: auto;
+}
+
 .history-list .history-list-item{
   margin-bottom: 30px;
 }

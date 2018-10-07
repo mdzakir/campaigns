@@ -47,7 +47,6 @@ export default function(state = initialState, action) {
         items: [action.payload, ...state.items]
       };
     case EDIT_ITEM:
-      debugger;
       let editedItem = state.items[action.payload.index];
       return {
         ...state,
@@ -101,7 +100,6 @@ export default function(state = initialState, action) {
         ]
       };
     case TOGGLE_PLAY:
-      debugger;
       let toggledItem = state.items[action.payload.index];
         return {
           ...state,
